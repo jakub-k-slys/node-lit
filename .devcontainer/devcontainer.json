@@ -1,0 +1,25 @@
+{
+    "name": "Node JS & Lit",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "sandbox",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "github.vscode-github-actions",
+        "runem.lit-plugin"
+    ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+    // Install project dependencies
+    "postCreateCommand": "sh ./.devcontainer/postinstall.sh",
+    // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "features": {
+      "github-cli": "latest"
+    },
+    "mounts": [
+    ]
+  }
