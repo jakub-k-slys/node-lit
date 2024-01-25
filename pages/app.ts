@@ -1,82 +1,113 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import '../components/simple-greeter';
+import '../components/todo-item';
+import '@material/web/labs/navigationbar/navigation-bar'
+import '@material/web/list/list'
+import '@material/web/list/list-item'
+import '@material/web/elevation/elevation'
+import '@material/web/button/filled-button'
+import '@material/web/button/text-button'
+
+const items = [
+  {id: 1, text: 'This is my first TODO item'}, 
+  {id: 2, text: 'This is my second TODO item'}, 
+  {id: 3, text: 'This is my third TODO item'}
+];
 
 @customElement('my-app')
 export default class App extends LitElement {
   static styles = css`
-    .container {
-      padding: 0 2rem;
-      display: block;
-    }
-
-    .main {
-      min-height: 100vh;
-      padding: 4rem 0;
-      flex: 1;
+    navigation-bar-items {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
     }
 
-    .title a {
-      color: #0070f3;
-      text-decoration: none;
+    logo {
+      font-weight: bold;
+      font-size: xx-large;
+      font-style: oblique;
+      padding: 20px;
+      color: white;
     }
 
-    .title a:hover,
-    .title a:focus,
-    .title a:active {
-      text-decoration: underline;
+    main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 20px;
+      margin: 20px;
+      background-color: white;
+      flex-direction: column;
     }
 
-    .title {
-      margin: 0;
-      line-height: 1.15;
-      font-size: 4rem;
+    todo-items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      flex-direction: column;
+      --md-elevation-level: 3;
+      min-width:50%;
     }
 
-    .title,
-    .description {
-      text-align: center;
+    todo-items ul li {
+      display: flex;
+      align-items: center;
     }
 
-    .description {
-      margin: 4rem 0;
-      line-height: 1.5;
-      font-size: 1.5rem;
+    todo-items ul li > * {
+      margin: 20px;
     }
 
-    .description a {
-      color: #0070f3;
-      text-decoration: none;
+    todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
     }
 
-    .description a:hover,
-    .description a:focus,
-    .description a:active {
-      text-decoration: underline;
+    new-item {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      --md-elevation-level: 3;
+      min-width:50%;
+    }
+    
+    new-item > * {
+      margin: 20px;
     }`;
 
   render() {
     return html`
-      <div class=container>
-        <head>
-          <title>Lit in Vite</title>
-          <link rel="icon" href="/assets/flame-favicon.svg" />
-        </head>
-
-        <main class=main>
-          <h1 class=title>
-            Welcome to <a href="https://lit.dev">Lit</a> and 
-            <a href="https://vitejs.dev/">Vite!</a>
-          </h1>
-          <p class=description>
-            The component below is a web component #builtWithLit
-          </p>
-          <simple-greeter name="Friend"></simple-greeter>
-        </main>
-      </div>
+      <md-navigation-bar>
+        <logo>#builtWithLit</logo>          
+        <navigation-bar-items>
+          <md-text-button>Home</md-text-button>
+          <md-text-button>About</md-text-button>
+        </navigation-bar-items>
+      </md-navigation-bar>
+      <main>
+        <new-item>
+          <md-elevation></md-elevation>
+          <md-outlined-text-field></md-outlined-text-field>
+          <md-filled-button>Add</md-filled-button>
+        </new-item>
+        <todo-items>
+          <md-elevation></md-elevation>
+          <ul>
+          ${items.map((item) =>
+            html`
+              <li>
+                <md-outlined-text-field .readOnly=${true} .value=${item.text}></md-outlined-text-field>
+                <md-filled-button>Remove</md-filled-button>
+              </li>
+            `)}
+          </ul>
+        </todo-items>
+      </main>
   `}
 }
