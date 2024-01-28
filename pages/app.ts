@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 import '../components/todo-item';
 import '@material/web/labs/navigationbar/navigation-bar'
 import '@material/web/list/list'
@@ -7,12 +7,6 @@ import '@material/web/list/list-item'
 import '@material/web/elevation/elevation'
 import '@material/web/button/filled-button'
 import '@material/web/button/text-button'
-
-const items = [
-  {id: 1, text: 'This is my first TODO item'}, 
-  {id: 2, text: 'This is my second TODO item'}, 
-  {id: 3, text: 'This is my third TODO item'}
-];
 
 @customElement('my-app')
 export default class App extends LitElement {
@@ -81,6 +75,21 @@ export default class App extends LitElement {
       margin: 20px;
     }`;
 
+  @property({type: Array})
+  items = [
+    {id: 1, text: 'This is my first TODO item'}, 
+    {id: 2, text: 'This is my second TODO item'}, 
+    {id: 3, text: 'This is my third TODO item'},
+  ];
+
+  @property({type: String})
+  newItem = '';
+
+  addItem() {
+    this.items = [...this.items, {id: this.items.length + 1, text: this.newItem}];
+    this.newItem = '';
+  }
+
   render() {
     return html`
       <md-navigation-bar>
@@ -93,13 +102,13 @@ export default class App extends LitElement {
       <main>
         <new-item>
           <md-elevation></md-elevation>
-          <md-outlined-text-field></md-outlined-text-field>
-          <md-filled-button>Add</md-filled-button>
+          <md-outlined-text-field .value=${this.newItem}></md-outlined-text-field>
+          <md-filled-button @click=${this.addItem}>Add</md-filled-button>
         </new-item>
         <todo-items>
           <md-elevation></md-elevation>
           <ul>
-          ${items.map((item) =>
+          ${this.items.map((item) =>
             html`
               <li>
                 <md-outlined-text-field .readOnly=${true} .value=${item.text}></md-outlined-text-field>
