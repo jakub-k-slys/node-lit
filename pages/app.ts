@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property, query} from 'lit/decorators.js';
 import '../components/todo-item';
 import '@material/web/labs/navigationbar/navigation-bar'
 import '@material/web/list/list'
@@ -7,6 +7,7 @@ import '@material/web/list/list-item'
 import '@material/web/elevation/elevation'
 import '@material/web/button/filled-button'
 import '@material/web/button/text-button'
+import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 
 @customElement('my-app')
 export default class App extends LitElement {
@@ -82,12 +83,16 @@ export default class App extends LitElement {
     {id: 3, text: 'This is my third TODO item'},
   ];
 
-  @property({type: String})
-  newItem = '';
+  @query('new-item md-outlined-text-field')
+  newItem! : MdOutlinedTextField;
 
   addItem() {
-    this.items = [...this.items, {id: this.items.length + 1, text: this.newItem}];
-    this.newItem = '';
+    this.items = [...this.items, {id: this.items.length + 1, text: this.newItem.value}];
+    this.newItem.value = '';
+  }
+
+  removeItem(id: number) {
+    this.items = this.items.filter((item) => item.id !== id);
   }
 
   render() {
@@ -102,8 +107,8 @@ export default class App extends LitElement {
       <main>
         <new-item>
           <md-elevation></md-elevation>
-          <md-outlined-text-field .value=${this.newItem}></md-outlined-text-field>
-          <md-filled-button @click=${this.addItem}>Add</md-filled-button>
+          <md-outlined-text-field></md-outlined-text-field>
+          <md-filled-button @click=${() => this.addItem()}>Add</md-filled-button>
         </new-item>
         <todo-items>
           <md-elevation></md-elevation>
@@ -112,7 +117,7 @@ export default class App extends LitElement {
             html`
               <li>
                 <md-outlined-text-field .readOnly=${true} .value=${item.text}></md-outlined-text-field>
-                <md-filled-button>Remove</md-filled-button>
+                <md-filled-button @click=${() => this.removeItem(item.id)}>Remove</md-filled-button>
               </li>
             `)}
           </ul>
