@@ -12,20 +12,6 @@ import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field
 @customElement('my-todo')
 export default class Todo extends LitElement {
   static styles = css`
-    navigation-bar-items {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    logo {
-      font-weight: bold;
-      font-size: xx-large;
-      font-style: oblique;
-      padding: 20px;
-      color: white;
-    }
-
     main {
       display: flex;
       justify-content: space-between;
