@@ -6,11 +6,9 @@ import './home';
 import '@material/web/labs/navigationbar/navigation-bar'
 import '@material/web/button/text-button'
 import {Router} from '@lit-labs/router';
-
+import {URLPattern} from 'urlpattern-polyfill';
 // @ts-expect-error: Property 'UrlPattern' does not exist
-if (!globalThis.URLPattern) { 
-  await import('urlpattern-polyfill');
-}
+globalThis.URLPattern = URLPattern
 
 @customElement('my-app')
 export default class App extends LitElement {
