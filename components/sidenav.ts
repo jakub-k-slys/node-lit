@@ -19,34 +19,44 @@ export default class SideNav extends LitElement {
       span {
         display: inline;
       }
+      md-icon {
+        font-family: 'Material Icons' !important;
+      }
     }`
 
   render() {
     return html`
     <div class="nav-items">
       <div class="nav-item">
-        <md-icon>settings</md-icon>
+        <md-icon>space_dashboard</md-icon>
         <span>Dashboard</span>
       </div>
       <div class="nav-item">
+        <md-icon>pin_drop</md-icon>
         <span>Locations</span>
       </div>
       <div class="nav-item">
+        <md-icon>shopping_bag</md-icon>
         <span>Shops</span>
       </div>
       <div class="nav-item">
+        <md-icon>inventory_2</md-icon>
         <span>Products</span>
       </div>
       <div class="nav-item">
+        <md-icon>point_of_sale</md-icon>
         <span>Sales</span>
       </div>
       <div class="nav-item">
+        <md-icon>bar_chart</md-icon>
         <span>Statistics</span>
       </div>
       <div class="nav-item">
+        <md-icon>call</md-icon>
         <span>Contact</span>
       </div>
       <div class="nav-item">
+        <md-icon>help</md-icon>
         <span>Help</span>
       </div>
     </div>
