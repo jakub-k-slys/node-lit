@@ -12,13 +12,13 @@ globalThis.URLPattern = URLPattern
 
 @customElement('my-app')
 export default class App extends LitElement {
-  static styles = css`
+  static styles = css`    
     navigation-bar-items {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
+    
     logo {
       font-weight: bold;
       font-size: xx-large;
