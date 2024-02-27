@@ -3,7 +3,7 @@ import {customElement} from 'lit/decorators.js';
 import '../components/sidenav';
 import '../components/appmain';
 
-@customElement('my-home')
+@customElement('app-home')
 export default class Home extends LitElement {
   static styles = css`
   .main-container {

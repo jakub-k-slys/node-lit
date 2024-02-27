@@ -4,20 +4,25 @@ import './todo';
 import './about';
 import './home';
 import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/button/text-button'
+import '@material/web/button/elevated-button'
 import {Router} from '@lit-labs/router';
 import {URLPattern} from 'urlpattern-polyfill';
 // @ts-expect-error: Property 'UrlPattern' does not exist
 globalThis.URLPattern = URLPattern
 
-@customElement('my-app')
-export default class App extends LitElement {
+@customElement('app-index')
+export default class Index extends LitElement {
   static styles = css`    
     navigation-bar-items {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
+    navigation-bar-items md-elevated-button {
+      margin: 10px;
+    }
+
     
     logo {
       font-weight: bold;
@@ -25,12 +30,15 @@ export default class App extends LitElement {
       font-style: oblique;
       padding: 20px;
       color: white;
-    }`;
+    }
+  
+    
+  `;
 
   private router = new Router(this, [
-    {path: '/', render: () => html`<my-home></my-home>`},
-    {path: '/todo', render: () => html`<my-todo></my-todo>`},
-    {path: '/about', render: () => html`<my-about></my-about>`},
+    {path: '/', render: () => html`<app-home></app-home>`},
+    {path: '/todo', render: () => html`<app-todo></app-todo>`},
+    {path: '/about', render: () => html`<app-about></app-about>`},
   ]);
 
   render() {
@@ -38,9 +46,9 @@ export default class App extends LitElement {
       <md-navigation-bar>
         <logo>#builtWithLit</logo>          
         <navigation-bar-items>
-          <md-text-button @click=${() => this.router.goto('/')}>Home</md-text-button>
-          <md-text-button @click=${() => this.router.goto('/todo')}>Todo</md-text-button>
-          <md-text-button @click=${() => this.router.goto('/about')}>About</md-text-button>
+          <md-elevated-button @click=${() => this.router.goto('/')}>Home</md-elevated-button>
+          <md-elevated-button @click=${() => this.router.goto('/todo')}>Todo</md-elevated-button>
+          <md-elevated-button @click=${() => this.router.goto('/about')}>About</md-elevated-button>
         </navigation-bar-items>
       </md-navigation-bar>
       ${this.router.outlet()}

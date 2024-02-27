@@ -9,58 +9,54 @@ import '@material/web/button/filled-button'
 import '@material/web/button/text-button'
 import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 
-@customElement('my-todo')
+@customElement('app-todo')
 export default class Todo extends LitElement {
   static styles = css`
-    main {
+    .main-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      position: relative;
-      padding: 20px;
-      margin: 20px;
+      margin: 40px;
+      flex-direction: row;
+    }
+
+    .todo-items {
       background-color: white;
-      flex-direction: column;
-    }
-
-    todo-items {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       position: relative;
       flex-direction: column;
       --md-elevation-level: 3;
-      min-width:50%;
+      padding: 10px;
+      width: 400px;
+      border-radius: 5px;
     }
 
-    todo-items ul li {
-      display: flex;
-      align-items: center;
-    }
-
-    todo-items ul li > * {
-      margin: 20px;
-    }
-
-    todo-item {
+    .todo-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
+      width: 400px;
+      margin: 10px;
     }
 
-    new-item {
+    .new-item {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      position: relative;
+      justify-content: space-between;
+      --md-elevation-level: 3;
       padding: 20px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      --md-elevation-level: 3;
-      min-width:50%;
+      width: 400px;
+      border-radius: 5px;
     }
-    
-    new-item > * {
-      margin: 20px;
-    }`;
+
+    .separator {
+      width: 40px;
+    }
+  `;
 
   @property({type: Array})
   items = [
@@ -69,7 +65,7 @@ export default class Todo extends LitElement {
     {id: 3, text: 'This is my third TODO item'},
   ];
 
-  @query('new-item md-outlined-text-field')
+  @query('.new-item md-outlined-text-field')
   newItem! : MdOutlinedTextField;
 
   addItem() {
@@ -83,24 +79,23 @@ export default class Todo extends LitElement {
 
   render() {
     return html`
-      <main>
-        <new-item>
+      <div class="main-container">
+        <div class="new-item">
           <md-elevation></md-elevation>
           <md-outlined-text-field></md-outlined-text-field>
           <md-filled-button @click=${() => this.addItem()}>Add</md-filled-button>
-        </new-item>
-        <todo-items>
+        </div>
+        <div class="separator"></div>
+        <div class="todo-items">
           <md-elevation></md-elevation>
-          <ul>
           ${this.items.map((item) =>
             html`
-              <li>
+              <div class="todo-item">
                 <md-outlined-text-field .readOnly=${true} .value=${item.text}></md-outlined-text-field>
                 <md-filled-button @click=${() => this.removeItem(item.id)}>Remove</md-filled-button>
-              </li>
+              </div>
             `)}
-          </ul>
-        </todo-items>
-      </main>
+          </div>
+      </div>
   `}
 }
