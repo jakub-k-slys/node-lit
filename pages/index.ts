@@ -3,8 +3,8 @@ import {customElement} from 'lit/decorators.js';
 import './todo';
 import './about';
 import './home';
-import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/button/elevated-button'
+import '@material/web/labs/navigationbar/navigation-bar';
+import '@material/web/button/elevated-button';
 import {Router} from '@lit-labs/router';
 import {URLPattern} from 'urlpattern-polyfill';
 // @ts-expect-error: Property 'UrlPattern' does not exist

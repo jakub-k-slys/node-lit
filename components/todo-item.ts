@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import '@material/web/textfield/outlined-text-field'
+import '@material/web/textfield/outlined-text-field';
 
 @customElement('todo-item')
 export default class ToDoItem extends LitElement {

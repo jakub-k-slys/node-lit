@@ -1,12 +1,12 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import '../components/todo-item';
-import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-import '@material/web/elevation/elevation'
-import '@material/web/button/filled-button'
-import '@material/web/button/text-button'
+import '@material/web/labs/navigationbar/navigation-bar';
+import '@material/web/list/list';
+import '@material/web/list/list-item';
+import '@material/web/elevation/elevation';
+import '@material/web/button/filled-button';
+import '@material/web/button/text-button';
 import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 
 @customElement('app-todo')

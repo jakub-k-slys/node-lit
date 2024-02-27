@@ -1,8 +1,8 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import './count-display';
-import '@material/web/button/elevated-button'
-import '@material/web/button/filled-tonal-button'
+import '@material/web/button/elevated-button';
+import '@material/web/button/filled-tonal-button';
 
 @customElement('simple-greeter')
 export class SimpleGreeter extends LitElement {

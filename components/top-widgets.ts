@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import '@material/web/icon/icon'
+import '@material/web/icon/icon';
 
 @customElement('app-top-widgets')
 export default class TopWidgets extends LitElement {

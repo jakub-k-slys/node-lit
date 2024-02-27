@@ -1,8 +1,8 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import '@material/web/icon/icon'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
+import '@material/web/icon/icon';
+import '@material/web/list/list';
+import '@material/web/list/list-item';
 
 @customElement('side-nav')
 export default class SideNav extends LitElement {
